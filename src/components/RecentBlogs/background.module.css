@@ -1,0 +1,220 @@
+@keyframes go-up {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(calc(50% + 28px));
+    }
+}
+
+.hero {
+    width: 100vw;
+    height: 50vh;
+    background-color: red;
+    @apply ![perspective:1000px] sm:![perspective:1000px] md:![perspective:1000px] lg:![perspective:1000px];
+    position: absolute;
+    inset: 0;
+    z-index: -6;
+    overflow: hidden;
+    transition: perspective 3000ms ease 0s;
+
+    & > .heroBody {
+        @apply tw-z-[100] tw-absolute tw-inset-0 [--gradient-stop-1:0px] [--gradient-stop-2:50%];
+        background: linear-gradient(to top, rgb(0 0 0 / 0%) 0, var(--geist-foreground) 50%);
+    }
+}
+
+.heroLines {
+    --right: #f8cde8;
+    --left: #b9ddff;
+    position: absolute;
+    inset: -100% 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200vw;
+    margin-left: -50%;
+    overflow: hidden;
+    background-image: linear-gradient(
+        to right,
+        var(--left) 45%,
+        rgb(0 0 0 / 0%) 50%,
+        var(--right) 55%
+    );
+    background-position-y: 100%;
+    transform: translateY(0);
+    animation: go-up 60s linear infinite;
+    mask-image: linear-gradient(to right, rgb(0 0 0 / 100%) 2px, rgb(0 0 0 / 0%) 1px),
+        linear-gradient(to bottom, rgb(0 0 0 / 100%) 2px, rgb(0 0 0 / 0%) 1px);
+    mask-size: 60px 60px;
+    mask-repeat: repeat repeat;
+    mask-position: 50% 0;
+}
+
+.background {
+    /* background-color: red; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    /* @apply tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-overflow-hidden tw-pointer-events-none; */
+
+    & > .backgroundBlock {
+        @apply tw-z-[-1] 
+         tw-absolute
+         tw-w-full 
+         tw-h-full 
+         [--gradient-stop-1:60%] 
+         [--gradient-stop-2:85%] 
+         lg:[--gradient-stop-1:50%] 
+         lg:[--gradient-stop-2:90%]
+         [--gradient-color-1:rgba(0,0,0,1)]
+         [--gradient-color-2:rgba(0,0,0,0.8)] 
+         [--gradient-color-3:rgba(0,0,0,0)];
+    }
+
+    & > .backgroundLeftLights,
+    & > .backgroundRightLights {
+        @apply tw-opacity-50;
+    }
+
+    & > .backgroundLeftLights::before {
+        position: absolute;
+        top: calc(50% - 900px / 2 + 151px);
+        left: -12.5%;
+        z-index: 200;
+        width: 25%;
+        height: 900px;
+        pointer-events: none;
+        content: '';
+        background: linear-gradient(180deg, #77b8ff 0%, rgb(42 138 246 / 40%) 100%);
+        filter: blur(125px);
+        border-radius: 100% 100% 100% 100% 25% 25% 25% 25%;
+        mix-blend-mode: normal;
+        opacity: 0.2;
+        transform: rotate(-15deg);
+        will-change: filter;
+    }
+
+    & > .backgroundLeftLights::after {
+        position: absolute;
+        top: calc(50% - 422px / 2 + 298px);
+        left: 0;
+        width: 40%;
+        height: 422px;
+        pointer-events: none;
+        content: '';
+        background: linear-gradient(180deg, rgb(29 92 162 / 20%) 0%, rgb(42 138 246 / 40%) 100%);
+        filter: blur(125px);
+        mix-blend-mode: normal;
+        opacity: 0.5;
+        will-change: filter;
+    }
+
+    & > .backgroundRightLights::before {
+        position: absolute;
+        top: calc(50% - 900px / 2 + 151px);
+        right: -12.5%;
+        z-index: 200;
+        width: 25%;
+        height: 900px;
+        overflow: hidden;
+        pointer-events: none;
+        content: '';
+        background-image: linear-gradient(
+            180deg,
+            rgb(236 151 207 / 40%) 0%,
+            rgb(233 42 103 / 100%) 100%
+        );
+        filter: blur(125px);
+        border-radius: 100% 100% 100% 100% 25% 25% 25% 25%;
+        mix-blend-mode: normal;
+        opacity: 0.2;
+        transform: rotate(15deg);
+        will-change: filter;
+    }
+
+    & > .backgroundRightLights::after {
+        position: absolute;
+        top: calc(50% - 422px / 2 + 298px);
+        right: 0;
+        width: 40%;
+        height: 422px;
+        pointer-events: none;
+        content: '';
+        background: linear-gradient(180deg, rgb(236 151 207 / 40%) 0%, rgb(233 42 103 / 100%) 100%);
+        filter: blur(125px);
+        mix-blend-mode: normal;
+        opacity: 0.25;
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+        will-change: filter;
+    }
+
+    & > .backgroundFirstBottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 16rem;
+        @apply tw-absolute 
+         tw-bottom-0 
+         tw-left-0 
+         tw-w-full 
+         tw-h-48 
+         tw-bg-gradient-to-t tw-from-white tw-to-transparent;
+    }
+
+    & > .backgroundSecondBottom {
+        background-image: linear-gradient(to bottom, white, transparent);
+        position: absolute;
+        top: 20vh;
+        left: 0;
+        width: 100%;
+        height: 50vh;
+        @apply tw-bg-gradient-to-b tw-from-white tw-to-transparent tw-absolute tw-top-[20vh] tw-left-0 tw-w-full tw-h-[50vh];
+    }
+}
+
+@media (width >= 992px) {
+    .heroLines {
+        animation-duration: 30s;
+        mask-size: 80px 80px;
+    }
+}
+
+@media (prefers-reduced-motion) {
+    .heroLines {
+        animation: none;
+    }
+}
+
+html[data-theme='dark'] {
+    .backgroundBlock {
+        @apply [--gradient-color-1:rgba(255,255,255,1)] 
+               [--gradient-color-2:rgba(255,255,255,0.8)] 
+               [--gradient-color-3:rgba(255,255,255,0)];
+    }
+
+    .backgroundLeftLights,
+    .backgroundRightLights {
+        opacity: 100;
+        /* @apply tw-opacity-100; */
+    }
+
+    .backgroundFirstBottom {
+        /* @apply tw-from-black; */
+    }
+
+    .backgroundSecondBottom {
+        /* @apply tw-from-black; */
+    }
+
+    .heroLines {
+        --right: #4c2638;
+        --left: #223b67;
+    }
+}

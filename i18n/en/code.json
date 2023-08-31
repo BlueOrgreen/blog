@@ -1,0 +1,21 @@
+{
+    "homepage.hero.greet": {
+      "message": "Hello! I'm ",
+      "description": "hero greet"
+    },
+    "homepage.hero.personal": {
+      "message": "An experienced software engineer with solid skills in TypeScript full-stackter TypeScript, NestJs, WeChat applet, Linux, Docker.",
+      "description": "hero personal"
+    },
+    "homepage.hero.skillTitle": {
+      "message": "Skills is: ",
+      "description": "hero skills"
+    },
+    "homepage.hero.contract": {
+      "message": "Social Media: ",
+      "description": "hero contract"
+    },
+    "theme.blog.title.new": {
+      "message": "New Blog"
+    }
+}

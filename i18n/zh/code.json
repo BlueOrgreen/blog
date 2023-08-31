@@ -1,0 +1,13 @@
+{
+    "Hello! 我是": {
+        "message": "Hello! 我是",
+        "description": "hero greet"
+      },
+      "帆云": {
+        "message": "帆云",
+        "description": "my name"
+      },
+      "theme.blog.title.new": {
+        "message": "最新博客"
+      }
+}
