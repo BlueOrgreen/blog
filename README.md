@@ -1,41 +1,21 @@
-# Website
+<h2 align="center">
+云帆的个人博客
+</h2>
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+<br>
 
-### Installation
+<p align="center">
+<br>
+<a href="https://www.chenchar.cn/">🖥 线上展示</a>
+<img src="./static/img/project.png" />
+<br><br>
+</p>
 
-```
-$ yarn
-```
+## 👋 Introduction
 
-### Local Development
+搭建个人的站点, 将知识的积累, 同时展示自己的项目成果
 
-```
-$ yarn start
-```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+## 📝 License
 
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+[MIT](./LICENSE)
