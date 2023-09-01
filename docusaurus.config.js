@@ -51,16 +51,16 @@ const config = {
           position: 'right',
           to: 'blog',
         },
-        {
-          label: '项目',
-          position: 'right',
-          to: 'project',
-        },
-        {
-          label: '关于我',
-          position: 'right',
-          to: 'about',
-        },
+        // {
+        //   label: '项目',
+        //   position: 'right',
+        //   to: 'project',
+        // },
+        // {
+        //   label: '关于我',
+        //   position: 'right',
+        //   to: 'about',
+        // },
         {
           type: 'localeDropdown',
           position: 'right',
