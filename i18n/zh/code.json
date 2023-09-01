@@ -9,5 +9,8 @@
       },
       "theme.blog.title.new": {
         "message": "最新博客"
+      },
+      "theme.recentBlog.title": {
+        "message": "近期博客"
       }
 }

@@ -5,7 +5,7 @@ authors: 帆云
 # date: 2023-04-01
 tags: [服务器, 运维]
 keywords: [服务器, 服务器]
-image: https://yunfan-cra.oss-cn-shanghai.aliyuncs.com/fanyun-website/server.png
+image: http://s0amp2hkw.hn-bkt.clouddn.com/server.png?e=1693549597&token=pMdVBb-vwl8GbyBzH24u-teppeKCddbSTSKkoE6d:aqd_C7wINp0ShQfm-y5C4Zr8lok=
 description: 作为一名开发人员, 在公司中虽然一直在跟代码打交道, 但是跟服务器搭建打交道的次数却是屈指可数, 所以打算写一篇文章用来梳理如何搭建服务器环境及代码部署
 ---
 

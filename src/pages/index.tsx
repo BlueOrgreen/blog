@@ -9,6 +9,7 @@ import { Typography, Grid, Modal, Box } from "@material-ui/core";
 import { useTrail, animated, useSpring } from "react-spring";
 import styles from './index.module.css';
 import RecentBlogs from '../components/RecentBlogs/index';
+import { Projects } from '../components/Projects/index';
 
 
 export default function Home(): JSX.Element {
@@ -108,6 +109,9 @@ export default function Home(): JSX.Element {
       </Grid>
       <Grid>
         <RecentBlogs />
+      </Grid>
+      <Grid>
+        <Projects />
       </Grid>
       <Modal
         open={open}

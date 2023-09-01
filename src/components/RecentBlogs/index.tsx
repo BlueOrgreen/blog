@@ -1,78 +1,127 @@
-import React, { FC } from 'react';
+import React, { FC, useRef, useLayoutEffect } from 'react';
 import styles from './index.module.css';
 import Translate from "@docusaurus/Translate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAccusoft } from '@fortawesome/free-brands-svg-icons';
 import { usePluginData } from '@docusaurus/useGlobalData'
-import { Typography, Grid, Modal, Box } from "@material-ui/core";
+import clsx from 'clsx'
+import Link from '@docusaurus/Link';
 import {
     motion,
     useAnimationFrame,
     useMotionValue,
-    useScroll,
-    useSpring,
     useTransform,
-    useVelocity,
     wrap,
-  } from 'framer-motion'
-import Link from '@docusaurus/Link';
+} from 'framer-motion'
 
-
+const defaultVelocity = 0.8
 const Slider = ({ blogList }) => {
+    let { blogs } = blogList;
+    // 初始速度
+    let baseVelocity = -defaultVelocity
+    // 移动方向
+    const directionFactor = useRef<number>(1)
+    const baseX = useMotionValue(0)
+
+    useLayoutEffect(() => {
+        baseX.set(6)
+      })
+
+    const x = useTransform(
+        baseX,
+        v => `${wrap(10, -(blogs.length * blogs.length), v)}%`,
+      )
+
+      useAnimationFrame((time, delta) => {
+        let moveBy = directionFactor.current * baseVelocity * (delta / 1000)
+        moveBy += directionFactor.current * moveBy
+        baseX.set(baseX.get() + moveBy)
+      })
+
+      const handleHoverStart = () => {
+        baseX.stop()
+        baseVelocity = 0
+      }
+    
+      const handleHoverEnd = () => {
+        baseVelocity = -defaultVelocity
+      }
 
     return (
         <div
-            className={styles.slider}
-            style={{ width: `${blogList.length * 100}%` }}
-        >
-            <motion.div
-        className={styles['slide-track']}
-        // style={{ x }}
-        // onHoverStart={handleHoverStart}
-        // onHoverEnd={handleHoverEnd}
+        className={styles.slider}
+        style={{ width: `${blogs.length * 100}%` }}
       >
-        {blogList.map(item => {
-            const {
-                metadata: { permalink, frontMatter },
-            } = item;
-            const { title, image, description } = frontMatter;
-            return (
-                <div className={styles.slide}>
-                    <Link to={permalink}>
-                        <img
+        <motion.div
+          className={styles['slide-track']}
+          style={{ x }}
+          onHoverStart={handleHoverStart}
+          onHoverEnd={handleHoverEnd}
+        >
+            {blogs.map((item, index) => {
+                const { metadata } = item;
+                const { description, permalink, title, tags } = metadata;
+                const { frontMatter: { image }, date } = metadata;
+                const dateObj = new Date(date);
+                const dateString = `${dateObj.getFullYear()}-${('0' + (dateObj.getMonth() + 1)).slice(-2)}-${('0' + dateObj.getDate()).slice(-2)}`;
+        
+                return (
+                    <div className={styles.slide}>
+                        <div className={styles.slideImage}>
+                            <img
                             src={image}
                             alt={title}
                             className={styles.image}
                             loading="lazy"
                         />
-                        <div className={styles.slideBody}>
-                            <h2 className={styles.title}>{title}</h2>
-                            <p className={styles.website}>{description}</p>
                         </div>
-                    </Link>
-                </div>
-            )
-        })}
-        </motion.div>
-        </div>
+                        <div className={styles.slideContent}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}>
+                                <div className={styles.itemTime}>{dateString}</div>
+                                <div className={styles.itemTags}>
+                                {tags.length > 0 &&
+                                    tags
+                                    .slice(0, 2)
+                                    .map(({ label, permalink: tagPermalink }, index) => (
+                                        <Link
+                                        key={tagPermalink}
+                                        className={`post__tags ${index < tags.length ? 'margin-right--sm' : ''}`}
+                                        to={tagPermalink}
+                                        style={{ color: 'black', fontSize: '0.75em', fontWeight: 500 }}>
+                                        {label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                            <Link to={permalink} className={styles.itemTitle}>
+                                {title}
+                            </Link>
+                            <div className={styles.slideDesc}>
+                            {description}
+                            </div> 
+                        </div>
+                  </div>
+                )
+            })}
+            </motion.div>
+            </div>
     )
 }
 
 const RecentBlogs:React.FC<{}> = () => {
     const blogPluginData = usePluginData('docusaurus-plugin-content-blog') as any
-
-    console.log('blogPluginData', blogPluginData);
     return (
         <div className={styles.recentBlogs}>
-            <h2 className={styles.experienceTitle}>
+            <h2 className={styles.title}>
                 <FontAwesomeIcon style={{ marginRight: "15px" }} icon={faAccusoft} />
-                <Translate>近期博客</Translate>
+                <Translate id="theme.recentBlog.title">近期博客</Translate>
             </h2>
             <div className={styles.underline}></div>
-            {/* <Hero /> */}
-            <Grid container style={{ padding: "10%" }} className={styles.swiper}>
-                {/* <Slider blogList={blogPluginData} /> */}
-            </Grid>
+            <div style={{ margin: '5%', position: "relative", overflow: "hidden" }} >
+                <Slider blogList={blogPluginData} />
+            <div className={clsx(styles.gradientBox, styles.leftBox)} />
+            <div className={clsx(styles.gradientBox, styles.rightBox)} />
+            </div>
         </div>
     )
 }

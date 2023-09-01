@@ -17,5 +17,8 @@
     },
     "theme.blog.title.new": {
       "message": "New Blog"
+    },
+    "theme.recentBlog.title": {
+      "message": "Recent Blog"
     }
 }
