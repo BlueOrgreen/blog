@@ -54,17 +54,15 @@
   width: 100%;
   height: 160px;
   overflow: hidden;
-  & img {
+}
+
+.slideImage img {
     object-fit: cover;
     width: 100%;
     height: 100%;
     transition: .5s;
   }
-}
 
-/* .slide a {
-  text-decoration: none;
-} */
 
 .slide:hover .image {
   transform: scale(1.2) translateY(-50px);
