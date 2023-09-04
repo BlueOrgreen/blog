@@ -36,7 +36,7 @@ export const projects: Project[] = [
         title: '小雯工作室官网',
         description: '🗼 来自法国设计工作室的官网',
         preview: 'https://yunfan-cra.oss-cn-shanghai.aliyuncs.com/fanyun-website/france.png',
-        website: 'https://france.chenchar.cn/',
+        website: 'https://edesignparis.fr/',
         tags: ['business', 'design', 'personal'],
         type: 'web',
         tech: ["react", "nextjs", "tailwindcss", "react spring"]
