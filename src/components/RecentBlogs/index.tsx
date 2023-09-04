@@ -85,7 +85,6 @@ const Slider = ({ blogList }) => {
                                     .map(({ label, permalink: tagPermalink }, index) => (
                                         <Link
                                         key={tagPermalink}
-                                        className={`post__tags ${index < tags.length ? 'margin-right--sm' : ''}`}
                                         to={tagPermalink}
                                         style={{ color: 'black', fontSize: '0.75em', fontWeight: 500 }}>
                                         {label}

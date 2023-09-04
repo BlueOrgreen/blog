@@ -5,6 +5,7 @@ import {
   PageMetadata,
   ThemeClassNames,
 } from '@docusaurus/theme-common'
+import Link from '@docusaurus/Link'
 import BackToTopButton from '@theme/BackToTopButton';
 import type { Props } from '@theme/BlogListPage';
 import Translate from '@docusaurus/Translate'
@@ -58,38 +59,39 @@ function BlogListPageContent(props: Props) {
                                     <h3 className={styles.titleLink} onClick={() => history.push({
                                         pathname: permalink
                                     })}>
-                                    {/* className={styles.titleLink} */}
-                                    {/* <Link  to={permalink}> */}
                                         {title}
-                                    {/* </Link> */}
                                    </h3>
-                                <div>
+                                   <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                      <div className={styles.blogItemTime}>{dateString}</div>
+                                      <div className={styles.blogItemTags}>
+                                      {tags.length > 0 &&
+                                          tags
+                                          .slice(0, 2)
+                                          .map(({ label, permalink: tagPermalink }, index) => (
+                                              <Link
+                                                key={tagPermalink}
+                                                className={styles.tag}
+                                                to={tagPermalink}
+                                              >
+                                                <span>
+                                                  {label}
+                                                </span>
+                                              </Link>
+                                          ))}
+                                      </div>
+                                   </div>
+                                <div className={styles.desc}>
                                     {description}
                                 </div>
+                            
                             </Grid>
-                            {/* <div className={styles.blogItemContent}>
-                                <div className={styles.blogItemTime}>{dateString}</div>
-                            </div> */}
-                            {/* <div className={styles.itemTags}>
-                                {tags.length > 0 &&
-                                    tags
-                                    .slice(0, 2)
-                                    .map(({ label, permalink: tagPermalink }, index) => (
-                                        <Link
-                                        key={tagPermalink}
-                                        className={`post__tags ${index < tags.length ? 'margin-right--sm' : ''}`}
-                                        to={tagPermalink}
-                                        style={{ color: 'black', fontSize: '0.75em', fontWeight: 500 }}>
-                                        {label}
-                                        </Link>
-                                    ))}
-                            </div> */}
                         </Grid>
                         </Fade>
                     )
                 })}
                 </div>
                 </Grid>
+                <BackToTopButton />
         </Layout>
     )
 }

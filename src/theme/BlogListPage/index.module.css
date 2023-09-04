@@ -59,3 +59,21 @@
     transform: scaleX(0);
   }
   
+.blogItemTime {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+  .blogItemTags span {
+    display: inline-block;
+    background: var(--ifm-color-grey-0);
+    color: var(--ifm-tag-text-color);
+    font-weight: 600;
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    /* text-transform: uppercase; */
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
